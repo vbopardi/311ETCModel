@@ -1,0 +1,22 @@
+---
+title: "NC Histograms"
+output: html_notebook
+---
+ 
+```{r}
+df <- read.csv('fservice.csv')
+ncregions = unique(df[["NCName"]])
+```
+
+
+```{r}
+for (region in ncregions)
+{
+  dfr = subset(df, NCName == region)
+  hist(dfr[dfr$ElapsedDays <= 10,]$ElapsedDays,
+       main = region,
+       breaks = seq(0,10,2),
+       xlab = 'ElapsedDays')
+}
+```
+
